@@ -74,7 +74,7 @@ const Education = () => {
               >
 
                 {/* DOT */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-violet-500 shadow-[0_0_20px_#7c3aed] z-20" />
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-violet-500 shadow-[0_0_20px_#7c3aed] z-[-10] md:z-20" />
 
                 {/* CARD CONTAINER */}
                 <div className={`w-full flex ${isLeft ? "justify-start" : "justify-end"}`}>

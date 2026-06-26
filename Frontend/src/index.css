@@ -3,7 +3,7 @@
 
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 h1,
@@ -12,9 +12,9 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Corben", serif;
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Corben", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 div,
@@ -22,13 +22,14 @@ p,
 ul,
 li,
 a {
-    font-family: "Outfit", sans-serif;
+  font-family: "Outfit", sans-serif;
 }
 
 @keyframes marquee {
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -37,3 +38,61 @@ a {
 .animate-marquee {
   animation: marquee 18s linear infinite;
 }
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  /* 40px */
+}
+
+/* Hide below your custom width */
+@media (max-width: 900px) {
+  .nav-menu {
+    display: none;
+  }
+}
+
+/* Optional: Show again above 901px */
+@media (min-width: 901px) {
+  .nav-menu {
+    display: flex;
+  }
+}
+
+.mobile-menu-btn {
+  display: none;
+}
+
+/* Show the button below 900px */
+@media (max-width: 900px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+}
+
+/* Hide the button above 900px */
+@media (min-width: 901px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+
+
+.desktop-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Hide below 900px */
+@media (max-width: 900px) {
+  .desktop-actions {
+    display: none;
+  }
+}
+
+.menu-drawer{
+  color: #8B5CF6;
+}
+
