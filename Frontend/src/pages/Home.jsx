@@ -25,7 +25,7 @@ const Home = () => {
           <img
             src={assets.npm}
             alt="background"
-            className="w-full h-[840px] sm:h-[740px] md:min-h-screen xl:h-[940px] lg:h-[840px] object-cover pt-10"
+            className="w-full h-[900px] sm:h-[740px] md:min-h-screen xl:h-[940px] lg:h-[840px] object-cover pt-10"
           />
         </motion.div>
 
