@@ -10,11 +10,31 @@ import {
     LogoutOutlined,
     BellOutlined,
     StarOutlined,
+    UsergroupAddOutlined,
 } from "@ant-design/icons";
+
+import { useLogoutMutation } from "../../redux/apis/Apis.js";
+import { message } from "antd";
 
 const MobileSideBar = ({ open, onClose }) => {
     const navigate = useNavigate();
     const location = useLocation();
+
+    const [logout, { isLoading }] = useLogoutMutation();
+
+    const handleLogout = async () => {
+        try {
+            await logout().unwrap();
+
+            localStorage.removeItem("user");
+            navigate("/");
+            message.success("Logout successfully!")
+        } catch (error) {
+            message.error("Logout failed");
+        }
+    };
+
+
 
     const menuItemStyle = {
         display: "flex",
@@ -40,8 +60,8 @@ const MobileSideBar = ({ open, onClose }) => {
         { label: "Tech Skills", icon: <SettingOutlined />, path: "/admin/tech-skills" },
         { label: "Contact", icon: <MailOutlined />, path: "/admin/contact" },
         { label: "Education", icon: <StarOutlined />, path: "/admin/education" },
+        { label: "User Management", icon: <UsergroupAddOutlined />, path: "/admin/users" },
         { label: "Settings", icon: <SettingOutlined />, path: "/admin/settings" },
-
     ];
 
     return (
@@ -123,6 +143,9 @@ const MobileSideBar = ({ open, onClose }) => {
 
                 {/* LOGOUT */}
                 <div
+                    loading={isLoading}
+                    onClick={handleLogout}
+
                     style={{
                         borderTop: "1px solid #eee",
                         padding: 12,

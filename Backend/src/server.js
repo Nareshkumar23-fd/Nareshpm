@@ -2,7 +2,15 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+
 import connectDB from "./config/mongodb.js";
+
+import AuthRouter from "./routes/authRoutes.js";
+import userRouter from "./routes/userRoutes.js";
+import skillRouter from "./routes/skillRoutes.js";
+import educationRouter from "./routes/educationRoutes.js";
+import experienceRouter from "./routes/experienceRoutes.js";
+import projectRouter from "./routes/projectroutes.js";
 
 dotenv.config();
 
@@ -19,6 +27,13 @@ app.use(cors({
     credentials: true
 }));
 
+
+app.use("/api/auth", AuthRouter);
+app.use("/api/users", userRouter);
+app.use("/api/skills", skillRouter);
+app.use("/api/education", educationRouter);
+app.use("/api/experience", experienceRouter);
+app.use("/api/projects", projectRouter);
 
 app.get("/", (req, res) => res.status(200).send("Hello Express!"));
 

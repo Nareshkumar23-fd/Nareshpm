@@ -101,11 +101,6 @@ const Skill = () => {
                 className="h-full bg-gradient-to-r from-violet-600 via-purple-500 to-pink-500 shadow-[0_0_12px_#7c3aed]"
               />
             </div>
-
-            {/* FOOTER TEXT */}
-            <div className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-              Production-grade development skill
-            </div>
           </motion.div>
         ))}
       </div>

@@ -26,16 +26,17 @@ const seedNaresh = async () => {
     );
 
     const user = await User.create({
-      name: process.env.SUPERADMIN_NAME,
-      email: process.env.SUPERADMIN_EMAIL,
-      password: hashPassword,
-      contact: process.env.SUPERADMIN_CONTACT,
+      name: process.env.SUPERADMIN_NAME || "Naresh",
+      email: process.env.SUPERADMIN_EMAIL || "nareshpm@gmail.com",
+      password: hashPassword || "nareshpm123",
+      contact: process.env.SUPERADMIN_CONTACT || "7904553714",
       role: "superadmin",
     });
 
     console.log("✅ Seeded Superadmin:", user.email);
 
     process.exit();
+
   } catch (error) {
     console.log("❌ Seed Error:", error.message);
     process.exit(1);

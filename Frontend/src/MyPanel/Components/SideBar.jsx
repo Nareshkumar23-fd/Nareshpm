@@ -10,13 +10,21 @@ import {
   LogoutOutlined,
   NotificationOutlined,
   StarOutlined,
+  UserAddOutlined,
 } from "@ant-design/icons";
+
+import { useLogoutMutation } from "../../redux/apis/Apis.js";
+import { message } from "antd";
 
 const { Sider } = Layout;
 
 const SideBar = ({ collapsed }) => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const [logout, { isLoading }] = useLogoutMutation();
 
   const selectedKey = location.pathname;
 
@@ -28,8 +36,29 @@ const SideBar = ({ collapsed }) => {
     { key: "/admin/contact", icon: <MailOutlined />, label: "Contact" },
     { key: "/admin/education", icon: <StarOutlined />, label: "Education" },
     { key: "/admin/notifications", icon: <NotificationOutlined />, label: "Notifications" },
+
+    {
+      key: "/admin/users",
+      icon: <UserAddOutlined />,
+      label: "User Management",
+    },
+
+
     { key: "/admin/settings", icon: <SettingOutlined />, label: "Settings" },
   ];
+
+
+  const handleLogout = async () => {
+    try {
+      await logout().unwrap();
+
+      localStorage.removeItem("user");
+      navigate("/");
+      message.success("Logout successfully!")
+    } catch (error) {
+      message.error("Logout failed");
+    }
+  };
 
   return (
     <Sider
@@ -96,6 +125,8 @@ const SideBar = ({ collapsed }) => {
           }}
         >
           <Button
+            loading={isLoading}
+            onClick={handleLogout}
             icon={<LogoutOutlined />}
             style={{
               width: "100%",

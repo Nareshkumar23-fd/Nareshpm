@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
 
 const Protect = () => {
-  return (
-    <div>Protect</div>
-  )
-}
+  const user = localStorage.getItem("user");
 
-export default Protect
+  return user ? <Outlet /> : <Navigate to="/" replace />;
+};
+
+export default Protect;

@@ -14,6 +14,10 @@ import {
 } from "@ant-design/icons";
 import { HiMenuAlt2 } from "react-icons/hi";
 
+import { useLogoutMutation } from "../../redux/apis/Apis.js";
+import { message } from "antd";
+import { useNavigate } from "react-router-dom";
+
 
 const NavBar = ({
   collapsed,
@@ -22,6 +26,24 @@ const NavBar = ({
   isMobile,
 }) => {
   const [dark, setDark] = useState(false);
+
+
+  const [logout, { isLoading }] = useLogoutMutation();
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout().unwrap();
+
+      localStorage.removeItem("user");
+      navigate("/");
+      message.success("Logout successfully!")
+    } catch (error) {
+      message.error("Logout failed");
+    }
+  };
+
 
   const toggleTheme = () => {
     const newTheme = !dark;
@@ -122,6 +144,8 @@ const NavBar = ({
 
         {/* LOGOUT */}
         <LogoutOutlined
+          loading={isLoading}
+          onClick={handleLogout}
           className="text-xl cursor-pointer"
           style={{ color: "#a855f7" }}
         />
