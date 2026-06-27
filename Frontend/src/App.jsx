@@ -1,14 +1,15 @@
 import React from 'react'
-import PortfolioPages from './Router/PortfolioPages'
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+import Layout from './Layout/Layout';
+import PageRouter from './MyPanel/Router/PageRouter';
+import { Routes, Route } from 'react-router-dom';
 
 const App = () => {
   return (
     <>
-      <NavBar />
-      <PortfolioPages />
-      <Footer />
+      <Routes>
+        <Route path="/" element={<Layout />} />
+        <Route path="/admin/*" element={<PageRouter />} />
+      </Routes>
     </>
   )
 }
