@@ -10,9 +10,9 @@ import TechnicalSkills from "../Pages/TechnicalSkills";
 import Projects from "../Pages/Projects";
 import NotFound from "../Pages/NotFound";
 import Settings from "../Pages/Settings";
-import Education from "../pages/Education";
 import Protect from "../Components/Protect";
 import UserManagement from "../Pages/UserManagement";
+import Education from "../Pages/Education"
 
 
 
