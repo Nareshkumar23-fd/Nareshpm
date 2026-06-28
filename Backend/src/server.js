@@ -21,11 +21,27 @@ connectDB();
 
 app.use(express.json());
 app.use(cookieParser())
-app.use(cors({
-    origin:
+const allowedOrigins = [
     "http://localhost:3001",
-    credentials: true
-}));
+    "https://nareshpm.vercel.app",
+];
+
+app.use(
+    cors({
+        origin: (origin, callback) => {
+            if (
+                !origin ||
+                allowedOrigins.includes(origin) ||
+                origin.endsWith(".vercel.app")
+            ) {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed by CORS"));
+            }
+        },
+        credentials: true,
+    })
+);
 
 
 app.use("/api/auth", AuthRouter);
